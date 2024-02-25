@@ -1,0 +1,65 @@
+import { TextInput } from 'react-native';
+import React, { useEffect, useState, FC } from 'react';
+import Animated, {
+    interpolate,
+    interpolateColor,
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from 'react-native-reanimated';
+
+interface InputType {
+    // Your prop definitions here
+    // (omitted for brevity)
+    borderBottomColor?: string;
+    borderBottomWidth?: number;
+}
+
+const TextInputAnim: FC<InputType> = ({
+    // Your prop destructuring here
+    // (omitted for brevity)
+    borderBottomColor,
+    borderBottomWidth,
+}) => {
+    const [isFocused, setIsFocused] = useState(false);
+    const translateX = useSharedValue(15);
+    const translateY = useSharedValue(0);
+    const paddingX = useSharedValue(0);
+    const isActive = useSharedValue(0);
+
+    const animationConfig = {
+        // Your animation config
+    };
+
+    const animatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [
+                { translateX: translateX.value },
+                { translateY: translateY.value },
+            ],
+            padding: paddingX.value,
+        };
+    });
+
+    useEffect(() => {
+        // Your useEffect logic
+    }, [isFocused, value]);
+
+    // Other functions and logic
+
+    return (
+        <Animated.View
+            style={[
+                // Your common styles
+                {
+                    borderBottomColor: borderBottomColor,
+                    borderBottomWidth: borderBottomWidth,
+                },
+                animationContainer,
+            ]}>
+            {/* Your Animated.Text and TextInput components */}
+        </Animated.View>
+    );
+};
+
+export default TextInputAnim;
